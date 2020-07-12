@@ -1,0 +1,98 @@
+/* 
+.Vchat_set_wrap {
+  float: left;
+  width: 100%;
+  
+  padding: 8px 16px;
+}
+
+.Mymsg .Vchat_name {
+  color: #fff;
+}
+
+.Mymsg .VchatText {
+  color: #fff;
+}
+
+.Mymsg .Vchat_name .Vchat_name_text {
+  color: #fff;
+}
+
+.VchatText {
+  color: #535f5e;
+}
+
+.Vchat_set {
+  border: none;
+  float: left;
+  font-size: 12px;
+  margin: 0;
+  padding: 15px;
+  background: #fff;
+  width: 90%;
+  border-radius: 5px;
+}
+
+.Mymsg {
+background: none repeat scroll 0 0;
+box-shadow: none;
+float: right;
+}
+.Vchat_name {
+  color: #b3b3b3;
+  float: left;
+  margin-bottom: 0;
+  width: 100%;
+  margin-top: 15px;
+}
+.Vchat_name_text {
+  float: left;
+  font-weight: bold;
+  color: #000;
+}
+.Vchat_time {
+  float: right;
+} */
+
+.Vchat_set_wrap_b {
+  float: left;
+  width: 100%;
+  padding: 7px 15px 20px;
+}
+
+.Vchat_set_b {
+  float: left;
+  background: #eee;
+  padding: 10px;
+  position: relative;
+  border-radius: 8px 8px 8px 0;
+}
+.VchatText p {
+  font-size: 12px;
+  color: #fff;
+}
+.Vchat_set_b.Mymsg .VchatText p {
+  color: #292929;
+}
+.Vchat_name_b {
+  position: absolute;
+  bottom: -17px;
+  left: 3px;
+  min-width: 150px;
+}
+
+.Vchat_name_text_b {
+  font-size: 12px;
+  color: #ccc;
+}
+.Vchat_set_b.Ymsg {
+  color: #fff;
+  border-radius: 8px 8px 0 8px;
+  float: right;
+}
+
+.Vchat_set_b.Ymsg .Vchat_name_b {
+  left: auto;
+  right: 3px;
+  text-align: right;
+}

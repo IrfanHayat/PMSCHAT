@@ -1,0 +1,51 @@
+
+<app-header [username]='username' ></app-header>
+
+<section class="Filter_bar_top">
+	<div class="container">
+    	<div class="row">
+        	<div class="col-4 col-sm-3 col-md-2">
+            	<div class="br_header"><h2>Filter visitors by: </h2></div>
+            </div>
+            <div class="col-4 col-sm-3 col-md-2">
+            	<div class="flt_select">
+                    <div class="flt_selected">Projects Name</div>
+                    <div class="flt_select_list">
+                    	<div class="flt_select_search">
+                        	<input type="text">
+                            <span><i class="fa fa-search" aria-hidden="true"></i></span>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+<section class="Filter_listing_box">
+	<div class="container">
+    	<div class="row">
+
+          <ng-flash-message></ng-flash-message>
+
+          <div class="col-12 col-md-7"> 
+              <div class="Filter_g_vis">
+                    <div class="Filter_g_vis_h">
+                      <h2>Projects Assigned</h2><span><i class="fa " [ngClass]="{'fa-angle-up':!displayProjects, 'fa-angle-down':displayProjects}" aria-hidden="true" (click)="toggleProjects()"></i></span>
+                    </div>
+                    <div class="Filter_g_vis_b" *ngIf="displayProjects">
+                        <ul>
+                            <li *ngFor="let project of projects">
+                                <span class="nameic">{{project.name }}</span>
+                                <span class="ifo_1_ic">{{project.url}}</span>
+                            </li>
+                        </ul>
+                    </div>
+              </div>
+          </div>
+
+      </div>
+  </div>
+</section>    

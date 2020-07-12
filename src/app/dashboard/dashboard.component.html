@@ -1,0 +1,231 @@
+
+<app-header [username]='companyName'></app-header>
+<!-- 
+<section class="Filter_bar_top">
+	<div class="container">
+    	<div class="row">
+        	<div class="col-4 col-sm-3 col-md-2">
+            	<div class="br_header"><h2>Filter visitors by: </h2></div>
+            </div>
+            <div class="col-4 col-sm-3 col-md-2">
+            	<div class="flt_select">
+                    <div class="flt_selected">Country</div>
+                    <div class="flt_select_list">
+                    	<div class="flt_select_search">
+                        	<input type="text">
+                            <span><i class="fa fa-search" aria-hidden="true"></i></span>
+                        </div>
+                        <ul>
+                            <li>Pakistan</li>
+                            <li>Pakistan</li>
+                            <li>Pakistan</li>
+                            <li>Pakistan</li>
+                            <li>Pakistan</li>
+                            <li>Pakistan</li>
+                            <li>Pakistan</li>
+                            <li>Pakistan</li>
+                            <li>Pakistan</li>
+                            <li>Pakistan</li>
+                            <li>Pakistan</li>
+                            <li>Pakistan</li>
+                            <li>Pakistan</li>
+                            <li>Pakistan</li>
+                            <li>Pakistan</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4 col-sm-3 col-md-2">
+            	<div class="flt_select">
+                    <div class="flt_selected">Visitor type</div>
+                    <div class="flt_select_list">
+                        <ul>
+                            <li>First-time visitor</li>
+                            <li>Returning visitor</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> -->
+
+<section class="Filter_listing_box">
+	<div class="container">
+    	<div class="row">
+
+            <ng-flash-message></ng-flash-message>
+
+        	<div class="col-12 col-md-7">
+                
+            	<div class="Filter_g_vis">
+                	<div class="Filter_g_vis_h">
+                		<h2>Current Projects</h2><span><i class="fa " [ngClass]="{'fa-angle-up':!displayProjects, 'fa-angle-down':displayProjects}" aria-hidden="true" (click)="toggleProjects()"></i></span>
+                    </div>
+                    <div class="Filter_g_vis_b" *ngIf="displayProjects">
+                        <ul>
+
+
+                            <li *ngFor="let project of projects" (click)="getProjectDetail(project)"  >
+                                <span class="nameic">{{project.name }}</span>
+                                <span class="iconic"><i class="fa fa-trash" (click)="removeProject(project._id)" aria-hidden="true"></i></span>
+                                <span class="ifo_1_ic">{{project.url}}</span>
+                            </li>
+                            
+                            
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="Filter_g_vis">
+                	<div class="Filter_g_vis_h">
+                		<h2>Current agents</h2><span><i class="fa " [ngClass]="{ 'fa-angle-up':!displayAgents, 'fa-angle-down':displayAgents}" aria-hidden="true" (click)="toggleAgents()"></i></span>
+                    </div>
+                    <div *ngIf="displayAgents" class="Filter_g_vis_b">
+                        <ul>
+                            <li *ngFor="let agent of agents">
+                                <span class="nameic">{{agent.name }}</span>
+                                <span class="iconic"><i class="fa fa-trash" (click)="removeAgent(agent._id)" aria-hidden="true"></i></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col-12 col-md-5">
+            	<div class="Filter_listing_detail">
+                	<div class="chat_visiter_info">
+                        
+                      <div class="col-12">
+                          <div class="row">
+                            <h2 class="actinfo">{{projectHeading}}</h2>
+                            <div class="Filter_g_vis">
+                                <div class="Filter_g_vis_h">
+                                <h2>Agents assigned</h2><span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                                </div>
+                                <div class="Filter_g_vis_b">
+                                    <ul>
+                                        <li *ngFor="let agent of assignAgents" >
+                                            <span class="nameic">{{agent.name }}</span>
+                                            <span class="ifo_1_ic">Assigned</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                        
+
+                        <div class="col-12">
+                            
+                            <div class="row">
+                                <label>Paste this code before closing body tag on your site</label>
+                                <pre  [style.height.px]="60">{{this.link}}</pre>
+                            </div>
+                        </div>
+
+                        
+                        <div class="row">
+                            <div class="col-4 col-md-4">
+                                <div class="col-12 col-md-12">
+                                    <label>Primary Color</label>
+                                    <input class="form-control" [(colorPicker)]="primarycolor" [style.background]="primarycolor"/>
+                                </div>
+
+                                <div class="col-12 col-md-12">
+                                    <label>Secondary Color</label>
+                                    <input class="form-control" [(colorPicker)]="secondarycolor" [style.background]="secondarycolor"/>
+                                </div>
+                            </div>
+                            <div class="col-8 col-md-8">
+                                <app-chatbox-prototype [primarycolor]='primarycolor' [secondarycolor]='secondarycolor'></app-chatbox-prototype>
+                            </div>
+                            
+                        </div>
+
+                        
+
+                        <div class="row">
+                                <br>
+                            <div class="col-4 col-md-4">
+                                <label>Assign agent</label>
+                            </div>
+                                
+                            <div class="col-4 col-md-4">
+                                <select class="form-control select" [(ngModel)]="agentname">
+                                    <option  *ngFor="let agent of agents" [ngValue]="agent._id" >{{agent.name}}</option>
+                                </select>
+                            </div>
+
+                            <div class="col-4 col-md-4">
+                                <a class="btn btn-default btn-block" (click)="assign()">Assign</a>
+                            </div>
+
+                        </div>
+                        <br>
+
+                        <div class="row">
+                            <div class="col-8 col-md-8">
+                                <a class="btn btn-default btn-block" (click)="updateColors()">Update Color</a>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div class="Filter_listing_detail ">
+                    <div class="chat_visiter_info">
+                        <div class="col-12">
+                            <div class="row">
+                                <h2 class="actinfo">Add new Project</h2>
+                                <div class="actinfo">
+                                    <div class="row">
+                                        <div class="col-5 col-md-5">
+                                            <input class="form-control" placeholder="Project name" type="text" [(ngModel)]="proname">
+                                        </div>
+                                        <div class="col-5 col-md-5">
+                                            <input class="form-control" placeholder="Site Url" type="text" [(ngModel)]="url">
+                                        </div>
+                                        <div class="col-2 col-md-2">
+                                            <button type="button"  (click)='addproject()' class="btn btn-default btn-block">Add</button>
+                                        </div>  
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="Filter_listing_detail">
+                        <div class="chat_visiter_info">
+                            
+                                <div class="col-12">
+                                    <div class="row">
+                                        <h2 class="actinfo">Add new Agent</h2>
+    
+                                        <div class="row">
+                                            <div class="col-5 col-md-5">
+                                                <input class="form-control" placeholder="agent name" type="text" [(ngModel)]="agentName">
+                                            </div>
+                                            <div class="col-5 col-md-5">
+                                                <input class="form-control" placeholder="password" type="password" [(ngModel)]='agentPassword'>
+                                            </div>
+                                            <div class="col-2 col-md-2">
+                                                <button type="button" (click)="addagent()"  class="btn btn-default btn-block">Add</button>
+                                            </div> 
+                                        </div>
+    
+                                    </div>
+                                </div>
+    
+                        </div>
+                    </div>
+
+
+
+            </div>
+        </div>
+	</div>        
+</section>    

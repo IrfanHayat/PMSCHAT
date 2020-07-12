@@ -1,0 +1,13 @@
+<h2 class="actinfo">{{ ticket.task_title }}</h2>
+<ul class="actinfo">
+  <li>
+    <span><i aria-hidden="true" class="fa fa-map-marker"></i></span
+    ><strong>Ticket No:</strong>{{ ticket.ticket_number }}
+  </li>
+  <li>
+    <span><i aria-hidden="true" class="fa fa-clock-o"></i></span
+    ><strong>Priority:</strong>{{ ticket.task_priority }}
+  </li>
+  <li><span></span><strong>Due Date:</strong>{{ ticket.duedate }}</li>
+  <li><span></span>{{ ticket.task_description }}</li>
+</ul>

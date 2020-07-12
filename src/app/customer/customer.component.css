@@ -1,0 +1,11 @@
+li {
+    display: inline-block;
+    height: auto;
+    margin: 0 15px;
+    position: relative;
+    width: 150px;
+}
+
+li:hover .user_item_close .fa.fa-window-close-o {
+    display: block;
+}

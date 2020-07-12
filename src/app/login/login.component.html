@@ -1,0 +1,14 @@
+
+
+<div class="login">
+  <ng-flash-message></ng-flash-message>
+  <div class="login-triangle"></div>
+  <h2 class="login-header">Login</h2>
+  <form class="login-container" form id="formData" #userData="ngForm" (ngSubmit)="authenticate()">
+    <p><input type="text" placeholder="Username" name="username" type="text" [(ngModel)] = "username"></p>
+    <p><input type="password" name="password" placeholder="Password" name="password" type="password" [(ngModel)] = "password"></p>
+    <p><input type="submit" value="Log in" ></p>
+  </form>
+  <a [routerLink]="['/register']">Signup</a>
+</div>
+

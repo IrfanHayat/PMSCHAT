@@ -1,0 +1,116 @@
+
+
+<div class="livechatboxx">
+    <div class="Vchat_modul">
+        <div class="Vchat_modul_h"  [ngStyle]="{'background-color': primaryColor }">
+            <h2 style="padding-top: 5px;"><span class="{{agentStatus}}" ></span>{{projectTitle}} Support</h2>
+            <div class="Vc_top-menu">
+                <ul>
+                   <li>
+                       <p color="red"  style="padding-top: 3px;
+                       padding-right: 0px;
+                       padding-left: 0px;
+                       margin-left: 35px;
+                   ">Rate Us</p>
+                        <a class="startoggle" ><img (click)="toggleRating()"  style="
+                            padding-left: 0px;
+                            margin-left: 46px;
+                        " src="assets/img/star.png"></a>
+                    </li>
+                    <li>
+                        <p color="red" style="
+                        padding-top: 3px;
+                        margin-left: 15px;
+                    ">logout</p>
+                        <a  id="headtoggle"><img (click)="toggleOptions()" style="
+                            padding-left: 0px;
+                            margin-left: 25px;
+                        "src="/assets/img/dots.png"></a>
+                        <ul class="headtoggle-body" *ngIf="displayOptions" appClickOutside  (clickOutside)="clickedOutside($event)">
+                            <li><a class="emailtoggle" (click)="toggleTranscript()" >Email Transcript</a></li>
+                            <li><a (click) ="sendTranscript(true)" >Download Transcript</a> <a [ngStyle]="{'display':'none'}" #downloadZipLink></a> </li>
+                            <li><a class="closetoggle" (click)="toggleLeave()">Leave Chat</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="Vc_topic_bar" [ngStyle]="{'background-color': secondaryColor }">
+                <p>{{topic}} </p>
+            </div>
+        </div>
+        <div *ngIf="!chatTaken" class="Vchat_text_sec">
+            <div class="Vchat_text_bdy">
+                <p [@simpleFadeAnimation]="animationState" >You are in the queue. Please wait...</p>
+            </div>
+        </div>
+        <div class="Vchat_leav_sec closetoggle-body" *ngIf="displayLeave">
+            <div class="Vchat_leav_bdy" appClickOutside  (clickOutside)="clickedOutside($event)">
+                <a class="btnblue" (click)="leftChat()" [ngStyle]="{'background-color': primaryColor }">Yes, I want to leave</a>
+                <a class="btnwhite" (click)="toggleLeave()">No</a>
+            </div>
+        </div>
+        <div class="Vchat_transcript_sec emailtoggle-body" *ngIf="displayEmail">
+            <div class="Vchat_transcript_bdy" appClickOutside  (clickOutside)="clickedOutside($event)">
+                <input type="email" class="transri-inp" placeholder="Email" [(ngModel)] = "transcriptEmail">
+                <a class="btnwhite transri-inp-btn" (click)="sendTranscript(false)"><img src="/assets/img/sent-mail.png"></a>
+            </div>
+        </div>
+        
+        <div class="Vchat_comment_sec startoggle-body" *ngIf="displayRating">
+            <div appClickOutside  (clickOutside1)="clickedOutside1($event)">
+                <div class="Vchat_comment_thumbs">
+                        <div  class="comment-send btnwhite" *ngIf="htmlStr"[innerHTML]="htmlStr"></div>                
+                    <a class="thumbs-up" ><img class="thumbs-up-light" *ngIf="!boolean"  (click)="thumbs('good')" [src]="imgSrc" ></a>
+                    <a class="thumbs-down"><img class="thumbs-down-light " *ngIf="!boolean1" (click)="thumbs('bad')" [src]="imgSrcDown"><img class="thumbs-down-yellow" src="/assets/img/thumbs-down.png"></a>
+                </div>
+                <div class="Vchat_comment_form" >
+                    <textarea placeholder="Type comment..."   [(ngModel)]="comment" ></textarea>
+                    <a class="comment-send btnwhite"  (click)="sendComment(comment)" ><img src="/assets/img/sent-mail.png"></a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="Vchat_form_sec" *ngIf="firstTimeUser; else Chat">
+            <div class="Vchat_form_bdy">
+                <div class="formgrup">
+                    <h2>{{headMessage}}</h2>
+                </div>
+                <div class="formgrup">
+                    <label>Username</label>
+                    <input type="text" class="Vch-inpt" [(ngModel)] = "name">
+                </div>
+                <div class="formgrup">
+                    <label>Email</label>
+                    <input type="text" class="Vch-inpt" [(ngModel)]= "email">
+                </div>
+                <div class="formgrup">
+                    <label>Topic</label>
+                    <input type="text" class="Vch-inpt" [(ngModel)] = "message">
+                </div>
+                <div class="formgrup-submit">
+                    <input type="button" value="Submit" class="Vch-inpt-btn" [ngStyle]="{'background-color': secondaryColor }" (click)="sendMessage(messageText)">
+                </div>
+            </div>
+        </div>
+
+
+        <ng-template #Chat >
+        <div class="Vchat_modul_sec">
+            <div #scrollMe class="Vchat_modul_bdy" [scrollTop]="scrollMe.scrollHeight">
+                <div  class="Vchat_modul_bdy-iner">
+                   
+                    <div #messagesContainer></div>
+
+                </div>
+                <div *ngIf="typing" class="istyping" [@simpleFadeAnimation]="animationState">{{assignedAgent.name}} is typing...</div>
+            </div>
+
+            <div class="Vchat_modul_f">
+                <textarea (keypress)="customerTyping()" placeholder="Your message here....." [(ngModel)]="messageText" (keyup.enter)="sendMessage($event.target.value)"></textarea><button class="sendmsgbtn" (click)="sendMessage(messageText)" ><img src="/assets/img/sent-mail.png"></button>
+            </div>
+        </div>
+    </ng-template>
+
+    </div>
+</div>

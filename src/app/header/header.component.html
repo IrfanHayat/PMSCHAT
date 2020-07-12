@@ -1,0 +1,70 @@
+<section class="header-top">
+        <div class="container">
+            <div class="my_row">
+                    <div class="logo">
+                      <a *ngIf="isAgent; else company" [routerLink]="['/agent-dashboard']"><img src="/assets/img/logo.png"></a>
+                      <ng-template #company>
+                            <a [routerLink]="['/dashboard']"><img src="/assets/img/logo.png"></a>
+                      </ng-template>
+                      
+                    </div>
+
+                  <nav class="top_left_menu">
+                      <ul>
+                          
+                          <li><a [routerLink]="['/visitors']">Visitors</a></li>
+                          <li><a [routerLink]="['/history']">History</a></li>
+                          <li><a [routerLink]="['/tickets']">Tickets</a></li>
+                          <li><a [routerLink]="['/agents']">Agents</a></li>
+                        <!-- <li><a [routerLink]="['/report']">Reports</a></li> -->
+                          <!-- <li><a [routerLink]="['/apps']">Apps</a></li> -->
+                      </ul>
+                  </nav>
+                  <div class="top_right_menu">
+                      <!-- <div class="sada_menu">
+                          <a [routerLink]="['/subscribe']">Subscribe now</a>
+                      </div> -->
+                      <!-- <div class="tool_menu tooltp">
+                          <a href="javascript:void(0);"><i class="fa fa-life-ring" aria-hidden="true"></i></a>
+                          <span>Knowledge Base</span>
+                      </div> -->
+                      <!-- <div class="tool_menu tooltp">
+                          <a href="javascript:void(0);"><i class="fa fa-bell" aria-hidden="true"></i></a>
+                          <span>Alert</span>
+                      </div>
+                      <div class="tool_menu tooltp">
+                          <a href="javascript:void(0);"><i class="fa fa-search" aria-hidden="true"></i></a>
+                          <span>Search</span>
+                      </div>
+                      <div class="tool_menu tooltp">
+                          <a href="javascript:void(0);"><i class="fa fa-sliders" aria-hidden="true"></i></a>
+                          <span>Settings</span>
+                      </div> -->
+                      <div class="tool_menu_user">
+                          <a href="javascript:void(0);"><span class="ONLINE_icon"></span><img src="/assets/img/user.jpg"></a>
+                          <div class="toolmenuuser_dropdown">
+                              <ul>
+                                  <li>{{username}} </li>
+                              </ul>
+                              <ul>
+                                  <li><a (click)="rejectChat(false)" [routerLink]="['/agent-dashboard']"><span class="tmu_icon c_green"><i class="fa fa-check" aria-hidden="true"></i></span> Accept chats</a></li>
+                                  <li><a (click)="rejectChat(true)" [routerLink]="['/agent-dashboard']"  ><span class="tmu_icon c_red"><i class="fa fa-times" aria-hidden="true"></i></span> Don’t accept chats</a></li>
+                              </ul>
+                              <ul>
+                                  <li><a [routerLink]="['/agent_profile']">My profile</a></li>
+                                  <li><a *ngIf="isAgent; else companyLink" [routerLink]="['/assigned-projects']">Assigned Projects</a> <ng-template #companyLink>Company Details</ng-template> </li>
+                                  <!-- <li><a [routerLink]="['/notifications']">Notifications</a></li> -->
+                              </ul>
+                              <ul>
+                                  <li><a [routerLink]="['/chat']">Chat tutorial</a></li>
+                                  <li><a [routerLink]="['/help']">Help</a></li>
+                                  <li><a (click)="onLogoutClick()" >Log out</a></li>
+    
+                              </ul>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          
+      </section>

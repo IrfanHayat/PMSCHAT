@@ -1,0 +1,85 @@
+
+var data = document.getElementById('vizz-chat')
+var url='https://chat.updatemedaily.com/proj-page/'+data.dataset.projectname+'/'+data.dataset.siteid;
+var height = 500;
+var width = 360; // min-width:400px
+function minizifrm() {
+   var ifrmclsouter = document.getElementById("ifrm-cls-outer");
+   ifrmclsouter.classList.toggle("minimiz");
+} 
+function showchat(url,height,width){ //alert();
+document.write( '<style>\n' );
+document.write( '.ifrm-cls-outer {\n' );
+document.write( '    position: fixed;\n' );
+document.write( '    z-index: 99999;\n' );
+document.write( '    width: '+width+'px;\n' );
+document.write( '    height: '+height+'px;\n' );
+document.write( '    border: none;\n' );
+document.write( '    bottom: 0;\n' );
+document.write( '    right: 35px;\n' );
+document.write( '}\n' );
+document.write( '.ifrm-cls {\n' );
+document.write( '    position: absolute;\n' );
+document.write( '    z-index: 99999;\n' );
+document.write( '    width: 100%;\n' );
+document.write( '    height: 100%;\n' );
+document.write( '    border: none;\n' );
+document.write( '    background: transparent;\n' );
+document.write( '    box-shadow: none;\n' );
+document.write( '    bottom: 0;\n' );
+document.write( '	right:0;\n' );
+document.write( '}\n' );
+document.write( '.Vc_h_cta {\n' );
+document.write( '    position: absolute;\n' );
+document.write( '    z-index: 100000;\n' );
+document.write( '    top: 12px;\n' );
+document.write( '    right: 16px;\n' );
+document.write( '    color: #fff;\n' );
+document.write( '}\n' );
+document.write( '.Vc_h_cta a {\n' );
+document.write( '    padding: 0 8px 25px;\n' );
+document.write( '    float: right;\n' );
+document.write( '    color: #fff;\n' );
+document.write( '    text-decoration: none;\n' );
+document.write( '    font-size: 24px;\n' );
+document.write( '    line-height: 0;\n' );
+document.write( '}\n' );
+document.write( '.Vc_h_cta a.maximiz {\n' );
+document.write( '    padding: 12px 8px;\n' );
+document.write( '}\n' );
+document.write( '.ifrm-cls-outer.minimiz{\n' );
+document.write( '    height: 46px;\n' );
+document.write( '}\n' );
+document.write( '.maximiz{\n' );
+document.write( '	display:none;\n' );
+document.write( '}\n' );
+document.write( '.ifrm-cls-outer.minimiz .minmiz{\n' );
+document.write( '    display:none;\n' );
+document.write( '}\n' );
+document.write( '.ifrm-cls-outer.minimiz .maximiz{\n' );
+document.write( '    display:block;\n' );
+document.write( '}\n' );
+document.write( 'span.cover {\n' );
+document.write( '    position: absolute;\n' );
+document.write( '    width: 170px;\n' );
+document.write( '    background: #4facfe;\n' );
+document.write( '    height: 37px;\n' );
+document.write( '    top: 0;\n' );
+document.write( '    right: 96%;\n' );
+document.write( '	display:none;\n' );
+document.write( '}\n' );
+document.write( '.ifrm-cls-outer.minimiz span.cover {\n' );
+document.write( '    display:none;\n' );
+document.write( '}\n' );
+document.write( '</style>\n' );
+document.write( '<div id=\"ifrm-cls-outer\" class=\"ifrm-cls-outer minimiz\">\n' );
+document.write( '    <div class=\"Vc_h_cta\">\n' );
+document.write( '    	<span class=\"cover\"></span>\n' );
+document.write( '        <a href=\"#\" class=\"minmiz\" onclick=\"minizifrm()\">_</a>\n' );
+document.write( '        <a href=\"#\" class=\"maximiz\" onclick=\"minizifrm()\">+</a>\n' );
+document.write( '    </div>\n' );
+document.write( '    <iframe class=\"ifrm-cls\" src=\"'+url+'\"></iframe>\n' );
+document.write( '</div>' );
+
+}
+showchat(url,height,width);

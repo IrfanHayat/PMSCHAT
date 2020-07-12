@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body class="chat">
+
+    <div class="chat__sidebar">
+
+        <h3>Users</h3>
+        <div id="users"></div>
+
+    </div>
+
+    <div class="chat__main">
+
+        <ol id="messages" class="chat__messages"></ol>
+
+        <div class="chat__footer">
+
+            <form id="message-form">
+                <input name="message" type="text" placeholder="Message" autofocus autocomplete="off" />
+                <button>Send</button>
+            </form>
+
+        </div>
+
+    </div>
+    <script id="message-template" type="text/template">
+            <li class="message">
+              <div class="message__title">
+                <h4>{{from}}</h4>
+            
+              </div>
+              <div class="message__body">
+                <p>{{text}}</p>
+              </div>
+            </li>
+          </script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+</body>
+
+
+</html>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.1/socket.io.js"></script>
+<script src="./js/index.js"></script>
+<script src="./js/deparam.js"></script>
+<script src="./js/mustache.js"></script>

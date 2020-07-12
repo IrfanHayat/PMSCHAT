@@ -1,0 +1,90 @@
+
+<app-header  ></app-header>
+
+<section class="Filter_bar_top">
+    <div class="container">
+        <div class="row">
+            <div class="col-4 col-sm-3 col-md-2">
+                <div class="br_header"><h2>Filter chats by: </h2></div>
+            </div>
+            <div class="col-4 col-sm-3 col-md-2">
+                <div class="flt_select">
+                    <div class="flt_selected">Date</div>
+                    <div class="flt_select_list">
+                        <ul>
+                            <li *ngFor="let d of dateModel"  (click)="getValue(d)" >{{d.name}}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4 col-sm-3 col-md-2">
+                <div class="flt_select">
+                    <div class="flt_selected">Tickets </div>
+                    <div class="flt_select_list">
+                        <div class="flt_select_search">
+                            <input type="text"  [(ngModel)]="tickets" >
+                            <span><i class="fa fa-search" aria-hidden="true"></i></span>
+                        </div>
+                        <ul>
+                           
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+
+
+ 
+<section class="Filter_listing_box">
+    <div class="container">
+        <div class="row">
+            <ng-flash-message></ng-flash-message>
+
+            <div class="col-12 col-md-7">
+                <div class="Filter_g_vis">
+                    <div class="Filter_g_vis_h">
+                        <h2>Tickets List</h2>
+                    </div>
+                    <div class="Filter_g_vis_b">
+                        <ul>
+                            <li *ngFor="let text of ticket | filter:tickets" (click)="getTicket(text._id)">
+                                <span class="thisis_icon color-green"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></span>
+                                <!-- <span class="nameic_g"><strong>{{text.task_description}} </strong></span> -->
+                                <span class="nameic_g"><strong>{{text.task_title}} </strong></span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div *ngFor="let data of pages | paginate: { itemsPerPage: 1, currentPage: p} ">
+                        <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+                </div>
+                </div>
+            </div>
+           
+            <div class="col-12 col-md-5">
+            	<div class="Filter_listing_detail">
+                    
+                    <div class="chat_visiter_info">
+                        <div class="col-12">
+                                    <div class="row">
+                                          <p class="actinfo"><span class="iconCVI"><img src="/assets/img/deskcom-64.png"></span>Ticket Detail</p>
+                                    </div>
+                                  </div>
+                        <div class="col-12">
+                            <div class="row">
+                                <div #viewContainerRef ></div>
+                            </div>
+                          </div>
+                          
+                      </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>        
+</section>  

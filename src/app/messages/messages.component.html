@@ -1,0 +1,28 @@
+<div #scrollMe class="Vchat_modul_bdy_ag" [scrollTop]="scrollMe.scrollHeight">
+
+  <!-- Message Component -->
+  <div #viewContainerRef (editmessage)=getChildValue($event) ></div>
+  <!-- End Message Component -->
+
+  <div *ngIf="customerTyping"  class="Vchat_set_ag Mymsg_ag" >
+    <div class="Vchat_name_ag">
+      <div [@simpleFadeAnimation]="animationState" class="Vchat_name_text_ag">{{customerName}} is typing..</div>
+        
+      </div>
+      <div class="VchatText_ag">
+      </div>
+  </div>  
+  
+
+</div>
+
+<div *ngIf="!history && !boolean" class="Vchat_modul_f_ag">
+  <textarea (keypress)="typing()" [disabled]="disableTextArea" name="message" id="message" type="text" placeholder="Message" [(ngModel)]="messageText" (keyup.enter)="sendMessage($event.target.value)" ></textarea>
+
+</div>
+
+<div *ngIf="!history && boolean" class="Vchat_modul_f_ag">
+  <textarea (keypress)="typing()" [disabled]="disableTextArea" name="message" id="message" type="text" placeholder="Message" [(ngModel)]="messageText" (keyup.enter)="editMessage($event.target.value)" ></textarea>
+
+</div>
+

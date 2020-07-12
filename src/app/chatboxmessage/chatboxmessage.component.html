@@ -1,0 +1,10 @@
+<div class="Vchat_set_wrap_b"  *ngIf="message">
+	<div class="Vchat_set_b {{messageClass}}" [ngStyle]="{'background-color':messageColor}">
+		<div class="VchatText">
+			<p id="message_{{message.time| date:'HHmms'}}">{{message.message}}</p>
+		</div>
+		<div class="Vchat_name_b">
+			<div class="Vchat_name_text_b" id="time_{{message.time| date:'HHmms'}}">{{user}} at {{message.time | date:'h:mm a'}}</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,92 @@
+<app-header ></app-header>
+<section class="Filter_bar_top">
+    <div class="container">
+        <div class="row">
+            <div class="col-4 col-sm-3 col-md-2">
+                <div class="br_header"><h2>Filter visitors by: </h2></div>
+            </div>
+            <div class="col-4 col-sm-3 col-md-2">
+                <div class="flt_select">
+                    <div class="flt_selected">Name</div>
+                    <div class="flt_select_list" >
+                        <div class="flt_select_search">
+                            <input type="text"  [(ngModel)]="username"   >
+                            <span><i class="fa fa-search" aria-hidden="true"></i></span>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-4 col-sm-3 col-md-2">
+                <div class="flt_select">
+                    <div class="flt_selected">Country</div>
+                    <div class="flt_select_list" >
+                        <div class="flt_select_search">
+                            <input type="text"  [(ngModel)]="Country"   >
+                            <span><i class="fa fa-search" aria-hidden="true"></i></span>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+            <div class="col-4 col-sm-3 col-md-2">
+                <div class="flt_select">
+                    <div class="flt_selected">Visitor type</div>
+                    <div class="flt_select_list">
+                        <ul>
+                            <li *ngFor="let d of dateModel" (click)="getValue(d)" >{{d.name}}</li>
+                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="Filter_listing_box">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-7">
+                <div class="Filter_g_vis">
+                    <div class="Filter_g_vis_h">
+                        <h2>Filter grop vis</h2><span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                    </div>
+                    <div class="Filter_g_vis_b">
+                        <ul>
+                            <li *ngFor="let data of visitors | country:Country |date1:username " (click)="getVisitorDetail(data._id)">
+                                <span class="flage pk_flage"><img src="/assets/img/pti.png"></span>
+                                <span class="nameic">{{data.user_name}}</span>
+                                <!-- <span class="iconic"><i class="fa fa-undo" aria-hidden="true"></i></span>
+                                <span class="ifo_1_ic">The fundamentals of responsive web design | vizzwebsolutions</span> -->
+                            </li>
+                        </ul>
+                    </div>
+                     
+                    <div *ngFor="let data of pages | paginate: { itemsPerPage: 1, currentPage: p} ">
+                            <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+                    </div>
+                </div>    
+            </div>
+            <div class="col-12 col-md-5">
+                <div class="Filter_listing_detail">
+                    <div class="chat_visiter_info">
+                        <div class="col-12">
+                            <div class="row">
+                                <p class="actinfo"><span class="iconCVI"><img src="/assets/img/deskcom-64.png"></span>Visitor Detail</p>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="row">
+                                    <div #viewContainerRef ></div>
+                            </div>
+                           
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>        
+</section>        
+

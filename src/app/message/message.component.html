@@ -1,0 +1,12 @@
+
+<div class="Vchat_set_ag {{messageClass}}" *ngIf="message && !updatemessage " >
+  <div class="Vchat_name_ag">
+      <div class="Vchat_name_text_ag" >{{customerName}}</div>
+      <div class="Vchat_time_ag"id="time_{{message.time| date:'HHmms'}}">{{message.time | date:'h:mm a'}}</div>
+    </div>
+    <div class="VchatText_ag">
+       <p id="message_{{message.time| date:'HHmms'}}">{{message.message}}</p>
+       <i *ngIf="customerName === 'Me'" class="fa fa-pencil" (click)="click(message)" aria-hidden="true"></i>
+    </div>
+</div>  
+

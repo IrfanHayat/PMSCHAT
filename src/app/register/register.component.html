@@ -1,0 +1,21 @@
+<mat-toolbar class="toolbar" >
+  <span routerLink = "/"> Ticketing System </span>
+  <span style="flex : 1 1 auto"></span>
+  <a *ngIf="!api.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}" routerLink = "/register"> Register </a>&nbsp;&nbsp;&nbsp;
+  <a *ngIf="!api.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}" routerLink = "/login"> Login </a>
+  <a *ngIf="api.loggedIn()" class="nav-link" (click)="onLogoutClick()" href="#">Logout</a>
+</mat-toolbar>
+
+<div class="login">
+    <ng-flash-message></ng-flash-message>
+  <div class="login-triangle"></div>
+  
+  <h2 class="login-header">Register</h2>
+
+  <form class="login-container" #userData="ngForm" (ngSubmit)="registerUser(userData.value)">
+    <p><input type="text" placeholder="Username" name="username" type="text" ngModel></p>
+    <p><input type="email" name="email" placeholder="email"  ngModel></p>
+    <p><input type="password" name="password" placeholder="Password"  ngModel></p>
+    <p><input type="submit" value="Register" ></p>
+  </form>
+</div>

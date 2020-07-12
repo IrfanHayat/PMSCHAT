@@ -1,0 +1,90 @@
+
+<app-header [username]='username' ></app-header>
+
+<section class="user_online_status_dash" *ngIf="value==false">
+    <div class="container">
+        <div class="row">
+            <div class="user_item_list">
+                     
+                    <ng-flash-message></ng-flash-message>
+                    
+                <app-customers (removeMessages)="removeMessages()" (someEvent)="getMessage($event)" ></app-customers>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="Chat_dash_contier">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-7">
+                <div class="Vchat_modul_ag">
+                    <div class="Vchat_modul_h_ag">
+                        <h2>Chat with User</h2>
+                        <div class="Vc_h_cta_ag">
+                            <a (click)="showCustomerDetails()">Show Details</a>
+                        </div>
+                    </div>
+
+                    <!-- Load Messages Component -->
+                    <div #viewContainerRef></div>
+                    <!-- End Messages Component -->
+
+                </div>
+            </div>
+                
+            <div class="col-xs-12 col-md-5">
+                <div class="chat_visiter_info" *ngIf="customer else empty">
+                    <h2>{{customer.user_name}} - {{customer.project_name}}</h2>
+                    <ul>
+                        <li><span><i class="fa fa-map-marker" aria-hidden="true"></i></span>LiveChat HQ</li>
+                        <li><span><i class="fa fa-clock-o" aria-hidden="true"></i></span><strong>{{time | date:'h:mm:ss a Z'}}</strong> local time</li>
+                        <li><span><i class="fa fa-envelope-o" aria-hidden="true"></i></span >{{customer.customer_email}}</li>
+                        <li><span><i class="fa fa-undo" aria-hidden="true"></i></span>Returning visitor (2 visits, 3
+                            chats, last seen today)</li>
+                    </ul>
+                    <p><span class="iconCVI"><img src="/login/assets/img/deskcom-64.png"></span>Ticket - Tracking my order</p>
+                    <p><span class="iconCVI"><img src="/login/assets/img/highrise-64.png"></span>Name:<strong>{{customer.user_name}} - {{customer.project_name}}</strong><br>Email:<strong>{{customer.customer_email}}</strong></p>
+                    <p><span class="pull-left"> Sample Page | Preview your chat window</span><span class="pull-right">29m
+                            18s</span></p>
+                    <p><i class="fa fa-location-arrow" aria-hidden="true"></i> IP: {{customer.ip}}</p>
+                    <p><i class="fa fa-location-arrow" aria-hidden="true"></i> Location: country:{{customer.location.country}} city: {{customer.location.city}}</p>
+                    <h2>Transfer Chat</h2>
+                    <div class="row">
+                        <div class="col-md-4 col-4">
+                            <select class="form-control" [(ngModel)] = "agent">
+                                <option *ngFor="let agent of agents" value="{{agent._id}}">{{agent.name}}</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3 col-3">
+                            <button class="btn btn-default btn-block" (click)="transferChat()">Transfer</button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <ng-template #empty>
+                    <div class="chat_visiter_info">
+                        <h2>Jane - sample visitor</h2>
+                        <ul>
+                            <li><span><i class="fa fa-map-marker" aria-hidden="true"></i></span>LiveChat HQ</li>
+                            <li><span><i class="fa fa-clock-o" aria-hidden="true"></i></span><strong>{{time | date:'HH:mm:ss Z'}}</strong> local time</li>
+                            <li><span><i class="fa fa-envelope-o" aria-hidden="true"></i></span >support@vizzlive.com</li>
+                            <li><span><i class="fa fa-undo" aria-hidden="true"></i></span>Returning visitor (2 visits, 3
+                                chats, last seen today)</li>
+                        </ul>
+                        <p><span class="iconCVI"><img src="/login/assets/img/deskcom-64.png"></span>Ticket - Tracking my order</p>
+                        <p><span class="iconCVI"><img src="/login/assets/img/highrise-64.png"></span>Name:Jane - sample visitor<br>Email:support@livechatinc.com<br>Phone:+1
+                            (617) 275-2400 </p>
+                        <p><span class="pull-left"> Sample Page | Preview your chat window</span><span class="pull-right">29m
+                                18s</span></p>
+                        <p><i class="fa fa-location-arrow" aria-hidden="true"></i> IP: 194.181.146.40</p>
+                        
+                    </div>
+
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</section>
+

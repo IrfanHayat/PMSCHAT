@@ -1,0 +1,13 @@
+<div class="login">
+  <ng-flash-message></ng-flash-message>
+  <div class="login-triangle"></div>
+  <h2 class="login-header">Agent Login</h2>
+
+  <form class="login-container" id="formData" #userData="ngForm" (ngSubmit)="loginAgent()">
+    <p><input type="text" placeholder="Name" name="name" type="text" [(ngModel)]="name"></p>
+    <p><input type="password" name="password" placeholder="Password" name="password" type="password"
+        [(ngModel)]="password"></p>
+    <p><input type="submit" value="Log in"></p>
+  </form>
+
+</div>

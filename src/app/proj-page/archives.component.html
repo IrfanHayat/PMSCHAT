@@ -1,0 +1,214 @@
+
+<app-header [username]='username' ></app-header>
+
+<section class="Filter_bar_top">
+    <div class="container">
+        <div class="row">
+            <div class="col-4 col-sm-3 col-md-2">
+                <div class="br_header"><h2>Filter chats by: </h2></div>
+            </div>
+            <div class="col-4 col-sm-3 col-md-2">
+                <div class="flt_select">
+                    <div class="flt_selected">Date</div>
+                    <div class="flt_select_list">
+                        <ul>
+                            <li>Today</li>
+                            <li>Yesterday</li>
+                            <li>Last 7 days</li>
+                            <li>Last 30 day</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4 col-sm-3 col-md-2">
+                <div class="flt_select">
+                    <div class="flt_selected">Agents</div>
+                    <div class="flt_select_list">
+                        <div class="flt_select_search">
+                            <input type="text" [(ngModel)]="username" (input)="Search()">
+                            <span><i class="fa fa-search" aria-hidden="true"></i></span>
+                        </div>
+                        <ul>
+                            <li>Zain</li>
+                            <li>Maryam</li>
+                            <li>Benish</li>
+                            <li>Abbass</li>
+                            <li>Mudasser</li>
+                            <li>Mozam</li>
+                            <li>Ilays</li>
+                            <li>Kamran</li>
+                            <li>Shahzad</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4 col-sm-3 col-md-2">
+                <div class="flt_select">
+                    <div class="flt_selected">Rating</div>
+                    <div class="flt_select_list">
+                        <ul>
+                            <li>Rated</li>
+                            <li>Not rated</li>
+                            <li>Rated bad</li>
+                            <li>Rated good</li>
+                            <li>Commented</li>
+                            <li>Commented bad</li>
+                            <li>Commented good</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="Filter_listing_box">
+    <div class="container">
+        <div class="row">
+            <ng-flash-message></ng-flash-message>
+
+            <div class="col-12 col-md-7">
+                <div class="Filter_g_vis">
+                    <div class="Filter_g_vis_h">
+                        <h2>Chats List</h2>
+                    </div>
+                    <div class="Filter_g_vis_b">
+                        <ul>
+                            <li *ngFor="let text of customerMessages|filter:username" (click)="getMessage(text._id,text.messages[0].time)">
+                                <span class="thisis_icon color-green"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></span>
+                                <span class="nameic_g"><strong>{{text.user_name}} </strong></span>
+                                <span class="detail_g">{{text.messages[0].message}}</span>
+                                <span class="ago_g">{{ text.messages[0].time | date:'EEEE, MMMM d, y' }}</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-5">
+                <div class="Filter_listing_cha">
+                    <div class="Vchat_modul">
+                        <div class="Vchat_modul_h">
+                            <h2 *ngIf="customer.agent else emptyCustomer">{{customer.agent[0].name}} with {{customer.user_name}} - {{customer.project_name}}</h2>
+                            <ng-template #emptyCustomer>
+                                <h2>Chat with User - Project</h2>
+                            </ng-template>
+                            <div class="Vc_h_cta">
+                                <strong>{{ chatDate | date:'EEEE, MMMM d, y' }}</strong>
+                            </div>
+                        </div>
+                        
+                            <div #viewContainerRef ></div>
+
+                        <div class="offline-cht-cta">
+                            <div class="col-md-8 col-md-offset-2 d-flex justify-content-center">
+                                <div class="col-md-12 col-sm-9">
+                                    <a href="javascript:void(0)" (click)="showModal=true"><i class="fa fa-file-text-o" aria-hidden="true" ></i> Create a ticket</a>
+                                    <a href="#"><i class="fa fa-paper-plane" aria-hidden="true"></i> Send to email</a>
+                                    <a href="#" class="uperbtn"><i class="fa fa-ban" aria-hidden="true"></i> Ban this visitor</a>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-12  text-center">
+                                <p>Chat ID : 123456ad</p>
+                            </div>
+                        </div>
+                        <div class="offline-cht-foot">
+                            <div class="col-12 col-md-12 text-center">
+                                <p>Chat started on: https://chat.updatemedaily.com/</p>
+                                <p>Geolocation: Islamabad, Islamabad, Pakistan / 101.50.127.174</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>        
+</section>   
+
+
+
+<div class="modal fade in" [ngClass]="{'show': showModal}" id="myModal" role="dialog">
+    <div class="modal-dialog custom-modal-dialog modal-lg">
+      <!-- Modal content-->
+        <div class="modal-content custom-modal-content">
+            <div class="modal-header custom-modal-header" [ngStyle]="{'border-bottom': '4px solid #199699'}">
+                <button type="button" class="close" data-dismiss="modal" (click)="showModal=false">&times;</button>
+                <h4 class="modal-title custom-modal-title">ADD TICKET</h4>
+            </div>
+
+            
+                <div class="modal-body custom-modal-body">
+                    <div class="row">
+                        <div class="col-md-6 col-xs-12">
+                        <div class="form-group">
+                            <label for="text">Ticket Name:</label>
+                            <input type="text" class="form-control" [(ngModel)]="ticket_info">
+                            <span style="color:red;display:none" class="ticket_err_cls">Required</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd">Description:</label>
+                            <textarea [(ngModel)]="task_desc" class="form-control" rows="6"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="date-pickeraa">Due Date:</label>
+                            <input (ngModel)="dt = $event" [ngModel]="task_duedate | date:'yyyy-MM-dd'" placeholder="YYYY-MM-DD" class="form-control" type="text">
+                        </div>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-success" (click)="setDate(1)">ToDay</button>
+                            <button type="button" class="btn btn-success" (click)="setDate(2)">Tomorrow</button>
+                            <button type="button" class="btn btn-success" (click)="setDate(6)">Week Last Day</button>
+                            <button type="button" class="btn btn-success" (click)="setDate()">Clear</button>
+                            <button type="button" class="btn btn-success" >Copy Link</button>
+                        </div>
+                        <!-- Copy to Clip board  -->
+                            <input type="text" class="form-control" name="" [(ngModel)]="ticket_link" style="width: 715px;border: none;">
+                        <!--Add  Multiple Row -->
+                            <ul class="appenFileNameCls"> </ul>
+                        <!--End of Multiple   -->
+                      
+                        </div>
+                        <div class="col-md-6 col-xs-12 custom-select">
+                            <div class="col-md-6 col-xs-12">
+                                <label for="date-pickeraa">Ticket priority</label>
+                                <select name="task_status" [(ngModel)]="task_status" class="form-control" data-width="100%">
+                                    <option value="urgent" class="urgent">Urgent</option>
+                                    <option value="high" class="high">High</option>
+                                    <option value="normal" class="normal">Normal</option>
+                                    <option value="low" class="low">Low</option>
+                                    <option value="notimportant" class="not_imp">Not Important</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 col-xs-12  appendUsrToModel">
+                                <label for="date-pickeraa">Select Employee</label>
+                                <select name="task_assign_usr" [(ngModel)]="task_assign_usr" class="form-control" data-width="100%">
+                                    <option *ngFor="let emp of pmsEmployees"  value="{{emp._id}}" >{{emp.user_name}}</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 col-xs-12">
+                                <label for="date-pickeraa">Select Milestone</label>
+                                <select name="project_milestone" [(ngModel)]="project_milestone" class="form-control"  data-width="100%">
+                                    <option *ngFor="let pro of pmsProjects"  value="{{pro._id}}" class="">{{pro.project_name}}</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-12 col-xs-12">
+                                <label for="">Guest Email</label>
+                                <input type="text" name="guest_email" value="{{customer.email}}" [(ngModel)]="customer.email" class="form-control">
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer custom-modal-footer">
+                    <tr>
+                        <div class="col-md-6 text-right">
+                            <button (click)="submitTicket(); showModal=false" class="btn btn-default btn-block">Add Ticket</button>
+                        </div>
+                   
+                        <div class="col-md-6">
+                            <button type="button" (click)="showModal=false"  class="btn btn-default btn-block" data-dismiss="modal">Close</button>
+                        </div>
+                    </tr>
+                </div>
+            
+        </div>
+    </div>
+</div>

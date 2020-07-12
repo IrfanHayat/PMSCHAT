@@ -1,0 +1,19 @@
+<li [ngClass]="{
+    'user_item_online': !read,
+    'user_item_offline': read
+  }">
+    <div class="user_item_close">
+        <i (click)="toggle()" class="fa fa-window-close-o" aria-hidden="true"></i>
+    </div>
+    <div class="user_item_img">
+        <img *ngIf="showMap" (click)="callParent(id)" src="/assets/img/1.jpg">
+
+        <div *ngIf="!showMap" class="user_close_chatbox">
+            <span class="closChat" (click)="close()">Close Chat</span>
+            <span>or</span>
+            <span (click)="toggle()" class="cancelChat">Cancel</span>
+        </div>
+    </div>
+    <div class="user_item_name">{{name}}</div>
+    <div >{{status}}</div>
+</li>
